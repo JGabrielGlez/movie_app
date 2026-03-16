@@ -12,11 +12,11 @@ const _Layout = () => {
         options={{
           headerShown: false,
           title: "Home",
-          tabBarIcon: ({ focused }) => {
-            return (
+          tabBarIcon: ({ focused }) => (
+            <>
               <ImageBackground
-                className="mt-4 flex min-h-4 w-full min-w-[112px] flex-1 flex-row items-center justify-center overflow-hidden rounded-full"
-                source={images.highlight}>
+                source={images.highlight}
+                className="mt-4 flex min-h-14 w-full min-w-[112px] flex-1 flex-row items-center justify-center overflow-hidden rounded-full">
                 <Image
                   source={icons.home}
                   tintColor="#151312"
@@ -24,8 +24,8 @@ const _Layout = () => {
                 />
                 <Text>Home</Text>
               </ImageBackground>
-            );
-          },
+            </>
+          ),
         }}
       />
       <Tabs.Screen
