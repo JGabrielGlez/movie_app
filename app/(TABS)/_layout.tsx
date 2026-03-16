@@ -22,7 +22,9 @@ const _Layout = () => {
                   tintColor="#151312"
                   className="size-5"
                 />
-                <Text>Home</Text>
+                <Text className="text-secondary ml-2 text-base font-semibold">
+                  Home
+                </Text>
               </ImageBackground>
             </>
           ),
