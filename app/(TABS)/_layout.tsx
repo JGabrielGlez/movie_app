@@ -2,31 +2,56 @@ import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
 import { Tabs } from "expo-router";
 import React from "react";
-import { Image, ImageBackground, Text } from "react-native";
-
+import { Image, ImageBackground, Text, View } from "react-native";
+const TabIcon = ({ focused, icon, title }: any) => {
+  if (focused) {
+    return (
+      <ImageBackground
+        source={images.highlight}
+        className="mt-4 flex min-h-16 w-full min-w-[112px] flex-1 flex-row items-center justify-center overflow-hidden rounded-full">
+        <Image source={icon} tintColor="#151312" className="size-5" />
+        <Text className="text-secondary ml-2 text-base font-semibold">
+          {title}
+        </Text>
+      </ImageBackground>
+    );
+  }
+  return (
+    <View className="mt-4 size-full items-center justify-center rounded-full">
+      <Image source={icon} tintColor="#88b5db" className="size-5" />
+    </View>
+  );
+};
 const _Layout = () => {
   return (
-    <Tabs>
+    <Tabs
+      screenOptions={{
+        tabBarShowLabel: false,
+        tabBarItemStyle: {
+          width: "100%",
+          height: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+        },
+        tabBarStyle: {
+          backgroundColor: "#0f0d23",
+          borderRadius: 50,
+          marginHorizontal: 20,
+          marginBottom: 36,
+          height: 52,
+          position: "absolute",
+          overflow: "hidden",
+          borderWidth: 1,
+          borderColor: "0f0d23",
+        },
+      }}>
       <Tabs.Screen
         name="index"
         options={{
           headerShown: false,
           title: "Home",
           tabBarIcon: ({ focused }) => (
-            <>
-              <ImageBackground
-                source={images.highlight}
-                className="mt-4 flex min-h-14 w-full min-w-[112px] flex-1 flex-row items-center justify-center overflow-hidden rounded-full">
-                <Image
-                  source={icons.home}
-                  tintColor="#151312"
-                  className="size-5"
-                />
-                <Text className="text-secondary ml-2 text-base font-semibold">
-                  Home
-                </Text>
-              </ImageBackground>
-            </>
+            <TabIcon focused={focused} icon={icons.home} title="Home" />
           ),
         }}
       />
@@ -35,6 +60,9 @@ const _Layout = () => {
         options={{
           title: "Search",
           headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <TabIcon focused={focused} icon={icons.search} title="Search" />
+          ),
         }}
       />
       <Tabs.Screen
@@ -42,6 +70,9 @@ const _Layout = () => {
         options={{
           title: "Saved",
           headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <TabIcon focused={focused} icon={icons.save} title="Saved" />
+          ),
         }}
       />
       <Tabs.Screen
@@ -49,6 +80,9 @@ const _Layout = () => {
         options={{
           title: "Profile",
           headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <TabIcon focused={focused} icon={icons.person} title="Profile" />
+          ),
         }}
       />
     </Tabs>
